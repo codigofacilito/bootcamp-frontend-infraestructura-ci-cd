@@ -1,4 +1,4 @@
-import { Job, JobsResponse, SearchParams } from './types';
+import { ExperienceLevel, Job, JobsResponse, JobType, SearchParams } from './types';
 
 // Mock data
 const jobs: Job[] = [
