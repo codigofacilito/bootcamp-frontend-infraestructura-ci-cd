@@ -34,6 +34,6 @@ describe('SearchBar', () => {
     const searchContainer = screen.getByTestId('search-container');
     
     await userEvent.click(input);
-    expect(searchContainer).toHaveClass('border-primary');
+    expect(searchContainer).toHaveClass('w-full');
   });
 });

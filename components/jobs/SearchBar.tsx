@@ -22,7 +22,7 @@ export default function SearchBar({ initialQuery, onSearch }: SearchBarProps) {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full" data-testid="search-container">
       <form
         onSubmit={handleSubmit}
         className="relative rounded-lg shadow-sm"
