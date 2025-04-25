@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/utils';
 describe('formatDate', () => {
   it('returns "1 day ago" for a date from yesterday', () => {
     const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setUTCDate(yesterday.getUTCDate() - 1);
     expect(formatDate(yesterday.toISOString())).toBe('1 day ago');
   });
 

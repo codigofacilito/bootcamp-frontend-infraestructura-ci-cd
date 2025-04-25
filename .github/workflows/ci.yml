@@ -55,4 +55,4 @@ jobs: # Se pueden agregar varios jobs, pero en este caso solo hay 2
         uses: actions/upload-artifact@v4 # Este action sube un artefacto al job
         with:
           name: build # Nombre del artefacto, se puede cambiar por cualquier nombre
-          
+          path: build
