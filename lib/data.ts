@@ -1,4 +1,10 @@
-import { ExperienceLevel, Job, JobsResponse, JobType, SearchParams } from './types';
+import {
+  ExperienceLevel,
+  Job,
+  JobsResponse,
+  JobType,
+  SearchParams,
+} from './types';
 
 // Mock data
 const jobs: Job[] = [
@@ -10,7 +16,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$90,000 - $120,000',
     experience: 'Mid Level',
-    description: 'We are looking for a skilled Frontend Developer to join our team. The ideal candidate will have experience with React and modern JavaScript frameworks.',
+    description:
+      'We are looking for a skilled Frontend Developer to join our team. The ideal candidate will have experience with React and modern JavaScript frameworks.',
     requirements: [
       'Proficient in React, Next.js',
       '3+ years of frontend development experience',
@@ -28,7 +35,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$100,000 - $130,000',
     experience: 'Senior Level',
-    description: 'Join our backend team to build scalable APIs and services. You will work on high-performance systems that handle millions of users.',
+    description:
+      'Join our backend team to build scalable APIs and services. You will work on high-performance systems that handle millions of users.',
     requirements: [
       'Proficient in Node.js, Python, or Java',
       '5+ years of backend development experience',
@@ -46,7 +54,8 @@ const jobs: Job[] = [
     type: 'Contract',
     salary: '$70,000 - $90,000',
     experience: 'Mid Level',
-    description: 'We are seeking a talented UX/UI Designer to create beautiful, intuitive interfaces for our web and mobile applications.',
+    description:
+      'We are seeking a talented UX/UI Designer to create beautiful, intuitive interfaces for our web and mobile applications.',
     requirements: [
       'Portfolio demonstrating UI/UX skills',
       '3+ years of design experience',
@@ -64,7 +73,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$110,000 - $140,000',
     experience: 'Senior Level',
-    description: 'Join our data science team to build predictive models and extract insights from large datasets.',
+    description:
+      'Join our data science team to build predictive models and extract insights from large datasets.',
     requirements: [
       'Advanced degree in Computer Science, Statistics, or related field',
       'Experience with machine learning algorithms',
@@ -82,7 +92,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$95,000 - $125,000',
     experience: 'Mid Level',
-    description: 'We are looking for a DevOps Engineer to help us automate our infrastructure and deployment processes.',
+    description:
+      'We are looking for a DevOps Engineer to help us automate our infrastructure and deployment processes.',
     requirements: [
       'Experience with CI/CD pipelines',
       'Knowledge of containerization (Docker, Kubernetes)',
@@ -100,7 +111,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$120,000 - $150,000',
     experience: 'Senior Level',
-    description: 'Lead product development and strategy for our flagship software product.',
+    description:
+      'Lead product development and strategy for our flagship software product.',
     requirements: [
       '5+ years of product management experience',
       'Strong understanding of software development lifecycle',
@@ -118,7 +130,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$80,000 - $100,000',
     experience: 'Mid Level',
-    description: 'Join our QA team to ensure the quality and reliability of our software products.',
+    description:
+      'Join our QA team to ensure the quality and reliability of our software products.',
     requirements: [
       'Experience with manual and automated testing',
       'Knowledge of testing methodologies',
@@ -136,7 +149,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$90,000 - $120,000',
     experience: 'Mid Level',
-    description: 'Build native mobile applications for iOS and Android platforms.',
+    description:
+      'Build native mobile applications for iOS and Android platforms.',
     requirements: [
       'Experience with Swift, Kotlin, or React Native',
       '3+ years of mobile development experience',
@@ -154,7 +168,8 @@ const jobs: Job[] = [
     type: 'Part-time',
     salary: '$40 - $60 per hour',
     experience: 'Entry Level',
-    description: 'Create clear and concise technical documentation for our software products.',
+    description:
+      'Create clear and concise technical documentation for our software products.',
     requirements: [
       'Strong writing and editing skills',
       'Ability to explain complex technical concepts',
@@ -172,7 +187,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$95,000 - $125,000',
     experience: 'Mid Level',
-    description: 'Help protect our systems and data from security threats and vulnerabilities.',
+    description:
+      'Help protect our systems and data from security threats and vulnerabilities.',
     requirements: [
       'Knowledge of security protocols and best practices',
       'Experience with security tools and technologies',
@@ -190,7 +206,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$100,000 - $130,000',
     experience: 'Senior Level',
-    description: 'Develop both frontend and backend components for our web applications.',
+    description:
+      'Develop both frontend and backend components for our web applications.',
     requirements: [
       'Proficiency in both frontend and backend technologies',
       '5+ years of full stack development experience',
@@ -208,7 +225,8 @@ const jobs: Job[] = [
     type: 'Full-time',
     salary: '$120,000 - $150,000',
     experience: 'Senior Level',
-    description: 'Design and implement machine learning models to solve complex business problems.',
+    description:
+      'Design and implement machine learning models to solve complex business problems.',
     requirements: [
       'Advanced degree in Computer Science or related field',
       'Experience with machine learning frameworks (TensorFlow, PyTorch)',
@@ -257,7 +275,9 @@ export function searchJobs({
 
   // Filter by experience level
   if (experience && experience.length > 0) {
-    filteredJobs = filteredJobs.filter((job) => experience.includes(job.experience));
+    filteredJobs = filteredJobs.filter((job) =>
+      experience.includes(job.experience)
+    );
   }
 
   // Calculate pagination

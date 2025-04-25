@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { ExperienceLevel, JobType } from "@/lib/types";
-import { getExperienceLevels, getJobTypes, getLocations } from "@/lib/data";
-import { CheckSquare, ChevronsUpDown, X } from "lucide-react";
+import { useState } from 'react';
+import { ExperienceLevel, JobType } from '@/lib/types';
+import { getExperienceLevels, getJobTypes, getLocations } from '@/lib/data';
+import { CheckSquare, ChevronsUpDown, X } from 'lucide-react';
 
 interface FilterSidebarProps {
   selectedJobTypes: JobType[];
   selectedExperience: ExperienceLevel[];
   selectedLocation: string;
   onFilterChange: (
-    type: "jobType" | "experience" | "location",
+    type: 'jobType' | 'experience' | 'location',
     value: any
   ) => void;
   onClearFilters: () => void;
@@ -26,39 +26,42 @@ export default function FilterSidebar({
   const jobTypes = getJobTypes();
   const experienceLevels = getExperienceLevels();
   const locations = getLocations();
-  
+
   const [expandedSections, setExpandedSections] = useState({
     jobType: true,
     experience: true,
     location: true,
   });
-  
+
   const toggleSection = (section: keyof typeof expandedSections) => {
     setExpandedSections((prev) => ({
       ...prev,
       [section]: !prev[section],
     }));
   };
-  
+
   const handleJobTypeChange = (type: JobType) => {
     const newSelected = selectedJobTypes.includes(type)
       ? selectedJobTypes.filter((t) => t !== type)
       : [...selectedJobTypes, type];
-    onFilterChange("jobType", newSelected);
+    onFilterChange('jobType', newSelected);
   };
-  
+
   const handleExperienceChange = (level: ExperienceLevel) => {
     const newSelected = selectedExperience.includes(level)
       ? selectedExperience.filter((e) => e !== level)
       : [...selectedExperience, level];
-    onFilterChange("experience", newSelected);
-  };
-  
-  const handleLocationChange = (location: string) => {
-    onFilterChange("location", location === selectedLocation ? "" : location);
+    onFilterChange('experience', newSelected);
   };
 
-  const hasActiveFilters = selectedJobTypes.length > 0 || selectedExperience.length > 0 || selectedLocation;
+  const handleLocationChange = (location: string) => {
+    onFilterChange('location', location === selectedLocation ? '' : location);
+  };
+
+  const hasActiveFilters =
+    selectedJobTypes.length > 0 ||
+    selectedExperience.length > 0 ||
+    selectedLocation;
 
   return (
     <div className="rounded-lg border border-border bg-card p-5">
@@ -74,22 +77,22 @@ export default function FilterSidebar({
           </button>
         )}
       </div>
-      
+
       <div className="space-y-5">
         {/* Job Type Filter */}
         <div className="border-t border-border pt-4">
           <button
             className="mb-2 flex w-full items-center justify-between text-sm font-medium"
-            onClick={() => toggleSection("jobType")}
+            onClick={() => toggleSection('jobType')}
           >
             Job Type
             <ChevronsUpDown
               className={`h-4 w-4 transition-transform ${
-                expandedSections.jobType ? "rotate-180" : ""
+                expandedSections.jobType ? 'rotate-180' : ''
               }`}
             />
           </button>
-          
+
           {expandedSections.jobType && (
             <div className="mt-2 space-y-2">
               {jobTypes.map((type) => (
@@ -108,21 +111,21 @@ export default function FilterSidebar({
             </div>
           )}
         </div>
-        
+
         {/* Experience Level Filter */}
         <div className="border-t border-border pt-4">
           <button
             className="mb-2 flex w-full items-center justify-between text-sm font-medium"
-            onClick={() => toggleSection("experience")}
+            onClick={() => toggleSection('experience')}
           >
             Experience Level
             <ChevronsUpDown
               className={`h-4 w-4 transition-transform ${
-                expandedSections.experience ? "rotate-180" : ""
+                expandedSections.experience ? 'rotate-180' : ''
               }`}
             />
           </button>
-          
+
           {expandedSections.experience && (
             <div className="mt-2 space-y-2">
               {experienceLevels.map((level) => (
@@ -142,21 +145,21 @@ export default function FilterSidebar({
             </div>
           )}
         </div>
-        
+
         {/* Location Filter */}
         <div className="border-t border-border pt-4">
           <button
             className="mb-2 flex w-full items-center justify-between text-sm font-medium"
-            onClick={() => toggleSection("location")}
+            onClick={() => toggleSection('location')}
           >
             Location
             <ChevronsUpDown
               className={`h-4 w-4 transition-transform ${
-                expandedSections.location ? "rotate-180" : ""
+                expandedSections.location ? 'rotate-180' : ''
               }`}
             />
           </button>
-          
+
           {expandedSections.location && (
             <div className="mt-2 space-y-2">
               {locations.map((location) => (

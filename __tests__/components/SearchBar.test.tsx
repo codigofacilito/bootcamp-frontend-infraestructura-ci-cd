@@ -23,7 +23,7 @@ describe('SearchBar', () => {
   it('updates input value when typing', async () => {
     render(<SearchBar initialQuery="" onSearch={() => {}} />);
     const input = screen.getByRole('textbox');
-    
+
     await userEvent.type(input, 'developer');
     expect(input).toHaveValue('developer');
   });
@@ -32,7 +32,7 @@ describe('SearchBar', () => {
     render(<SearchBar initialQuery="" onSearch={() => {}} />);
     const input = screen.getByRole('textbox');
     const searchContainer = screen.getByTestId('search-container');
-    
+
     await userEvent.click(input);
     expect(searchContainer).toHaveClass('w-full');
   });

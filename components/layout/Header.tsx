@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import Link from 'next/link';
+import { Search } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,17 +16,17 @@ export default function Header() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300",
+        'fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300',
         scrolled
-          ? "bg-white shadow-sm backdrop-blur-md bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90"
-          : "bg-transparent"
+          ? 'bg-white shadow-sm backdrop-blur-md bg-opacity-90 dark:bg-gray-900 dark:bg-opacity-90'
+          : 'bg-transparent'
       )}
     >
       <div className="container mx-auto px-4">

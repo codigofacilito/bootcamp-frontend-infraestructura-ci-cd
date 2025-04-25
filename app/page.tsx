@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import RootLayout from "@/components/layout/RootLayout";
-import JobList from "@/components/jobs/JobList";
+import RootLayout from '@/components/layout/RootLayout';
+import JobList from '@/components/jobs/JobList';
 
 export default function Home() {
   return (

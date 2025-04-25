@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { ReactNode } from "react";
-import { Inter } from "next/font/google";
-import Header from "./Header";
-import Footer from "./Footer";
+import { ReactNode } from 'react';
+import { Inter } from 'next/font/google';
+import Header from './Header';
+import Footer from './Footer';
 
 interface RootLayoutProps {
   children: ReactNode;

@@ -12,8 +12,17 @@ export interface Job {
   logo: string;
 }
 
-export type JobType = 'Full-time' | 'Part-time' | 'Contract' | 'Freelance' | 'Internship';
-export type ExperienceLevel = 'Entry Level' | 'Mid Level' | 'Senior Level' | 'Executive';
+export type JobType =
+  | 'Full-time'
+  | 'Part-time'
+  | 'Contract'
+  | 'Freelance'
+  | 'Internship';
+export type ExperienceLevel =
+  | 'Entry Level'
+  | 'Mid Level'
+  | 'Senior Level'
+  | 'Executive';
 
 export interface JobsResponse {
   jobs: Job[];

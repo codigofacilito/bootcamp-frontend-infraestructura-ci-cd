@@ -2,32 +2,32 @@ name: Build and Test V2
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   # schedule:
-    # - cron: '0 2 * * 1'  # Ejecución semanal los lunes a las 2am UTC
+  # - cron: '0 2 * * 1'  # Ejecución semanal los lunes a las 2am UTC
   workflow_dispatch: # Permite ejecutar el workflow manualmente desde la interfaz de GitHub
 
 jobs:
   lint:
-    name: Lint Code 
+    name: Lint Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run linting
         run: npm run lint
-        
+
       - name: Run code formatting check
         run: npm run format:check # Verifica si el formato es correcto, si no lo es, el job fallara
 
@@ -39,19 +39,19 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node-version: [18, 20]
         exclude:
-        - os: macos-latest
-          node-version: 18
+          - os: macos-latest
+            node-version: 18
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-         node-version: ${{ matrix.node-version }}
-         cache: 'npm'
-        
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Run tests with coverage
         run: npm run test:coverage

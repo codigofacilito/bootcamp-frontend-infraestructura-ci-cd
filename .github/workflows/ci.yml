@@ -2,14 +2,14 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main ] # N cantidad de ramas, no hay problema, incluso si no existen
+    branches: [main] # N cantidad de ramas, no hay problema, incluso si no existen
   pull_request:
-    branches: [ main ] # Aca tambien se pueden agregar ramas, pero no es necesario
+    branches: [main] # Aca tambien se pueden agregar ramas, pero no es necesario
 jobs: # Se pueden agregar varios jobs, pero en este caso solo hay 2
   test:
     runs-on: ubuntu-latest # Se puede cambiar por windows o mac, pero en este caso es ubuntu
     # Se puede ejecutar en diferentes sistemas operativos
-    
+
     steps:
       - uses: actions/checkout@v4 # Descarga el repositorio en la version del commit que se esta ejecutando
 

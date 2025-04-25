@@ -1,23 +1,23 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { JobType, Job, ExperienceLevel } from "@/lib/types";
-import { searchJobs } from "@/lib/data";
-import JobCard from "./JobCard";
-import FilterSidebar from "./FilterSidebar";
-import SearchBar from "./SearchBar";
-import Pagination from "./Pagination";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useEffect, useState } from 'react';
+import { JobType, Job, ExperienceLevel } from '@/lib/types';
+import { searchJobs } from '@/lib/data';
+import JobCard from './JobCard';
+import FilterSidebar from './FilterSidebar';
+import SearchBar from './SearchBar';
+import Pagination from './Pagination';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 export default function JobList() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  
-  const query = searchParams.get("query") || "";
-  const page = parseInt(searchParams.get("page") || "1");
-  const location = searchParams.get("location") || "";
-  const type = searchParams.getAll("type") as JobType[];
-  const experience = searchParams.getAll("experience") as ExperienceLevel[];
+
+  const query = searchParams.get('query') || '';
+  const page = parseInt(searchParams.get('page') || '1');
+  const location = searchParams.get('location') || '';
+  const type = searchParams.getAll('type') as JobType[];
+  const experience = searchParams.getAll('experience') as ExperienceLevel[];
 
   const [jobs, setJobs] = useState<Job[]>([]);
   const [totalJobs, setTotalJobs] = useState(0);
@@ -36,12 +36,12 @@ export default function JobList() {
         page,
         limit: JOBS_PER_PAGE,
       });
-      
+
       setJobs(result.jobs);
       setTotalJobs(result.total);
       setIsLoading(false);
     };
-    
+
     fetchJobs();
   }, [query, type, location, experience, page]);
 
@@ -49,14 +49,14 @@ export default function JobList() {
     updates: Record<string, string | string[] | number | null>
   ) => {
     const newParams = new URLSearchParams();
-    
+
     // Copy current params
     searchParams.forEach((value, key) => {
       if (!Object.keys(updates).includes(key)) {
         newParams.append(key, value);
       }
     });
-    
+
     // Add/update with new values
     Object.entries(updates).forEach(([key, value]) => {
       if (value === null) {
@@ -68,14 +68,14 @@ export default function JobList() {
         newParams.set(key, String(value));
       }
     });
-    
+
     // Reset to page 1 if filters change
-    if (!updates.hasOwnProperty("page")) {
-      newParams.set("page", "1");
+    if (!updates.hasOwnProperty('page')) {
+      newParams.set('page', '1');
     }
-    
+
     const newSearch = newParams.toString();
-    router.push(newSearch ? `/?${newSearch}` : "/");
+    router.push(newSearch ? `/?${newSearch}` : '/');
   };
 
   const handleSearch = (newQuery: string) => {
@@ -83,14 +83,14 @@ export default function JobList() {
   };
 
   const handleFilterChange = (
-    filterType: "jobType" | "experience" | "location",
+    filterType: 'jobType' | 'experience' | 'location',
     value: any
   ) => {
-    if (filterType === "jobType") {
+    if (filterType === 'jobType') {
       updateSearchParams({ type: value.length > 0 ? value : null });
-    } else if (filterType === "experience") {
+    } else if (filterType === 'experience') {
       updateSearchParams({ experience: value.length > 0 ? value : null });
-    } else if (filterType === "location") {
+    } else if (filterType === 'location') {
       updateSearchParams({ location: value || null });
     }
   };
@@ -105,11 +105,11 @@ export default function JobList() {
 
   const handlePageChange = (newPage: number) => {
     updateSearchParams({ page: newPage });
-    
+
     // Scroll to top when page changes
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
@@ -124,7 +124,7 @@ export default function JobList() {
         </p>
         <SearchBar initialQuery={query} onSearch={handleSearch} />
       </div>
-      
+
       <div className="flex flex-col md:flex-row md:gap-8">
         <div className="md:w-1/4 lg:w-1/5 mb-6 md:mb-0">
           <div className="sticky top-24">
@@ -137,14 +137,14 @@ export default function JobList() {
             />
           </div>
         </div>
-        
+
         <div className="md:w-3/4 lg:w-4/5">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-xl font-semibold">
-              {isLoading ? "Searching jobs..." : `${totalJobs} jobs found`}
+              {isLoading ? 'Searching jobs...' : `${totalJobs} jobs found`}
             </h2>
           </div>
-          
+
           {isLoading ? (
             <div className="grid gap-4 md:grid-cols-1 lg:grid-cols-2">
               {[...Array(4)].map((_, index) => (
@@ -174,7 +174,7 @@ export default function JobList() {
               </button>
             </div>
           )}
-          
+
           {totalJobs > JOBS_PER_PAGE && (
             <div className="mt-8">
               <Pagination

@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface PaginationProps {
   currentPage: number;
@@ -14,7 +14,7 @@ export default function Pagination({
   const getPageNumbers = () => {
     const pages = [];
     const maxPagesToShow = 5;
-    
+
     // If total pages is less than max, show all pages
     if (totalPages <= maxPagesToShow) {
       for (let i = 1; i <= totalPages; i++) {
@@ -22,10 +22,10 @@ export default function Pagination({
       }
       return pages;
     }
-    
+
     // Always show first and last page, and pages around current
     const sidePages = Math.floor((maxPagesToShow - 2) / 2);
-    
+
     // Current page is close to start
     if (currentPage <= sidePages + 1) {
       for (let i = 1; i <= maxPagesToShow - 1; i++) {
@@ -34,7 +34,7 @@ export default function Pagination({
       pages.push(totalPages);
       return pages;
     }
-    
+
     // Current page is close to end
     if (currentPage >= totalPages - sidePages) {
       pages.push(1);
@@ -43,7 +43,7 @@ export default function Pagination({
       }
       return pages;
     }
-    
+
     // Current page is in the middle
     pages.push(1);
     for (let i = currentPage - sidePages; i <= currentPage + sidePages; i++) {
@@ -52,7 +52,7 @@ export default function Pagination({
       }
     }
     pages.push(totalPages);
-    
+
     return pages;
   };
 
@@ -68,12 +68,12 @@ export default function Pagination({
       >
         <ChevronLeft className="h-4 w-4" />
       </button>
-      
+
       {pageNumbers.map((page, i) => {
         // Insert ellipsis where there are gaps
         const prevPage = pageNumbers[i - 1];
         const showEllipsis = prevPage && page - prevPage > 1;
-        
+
         return (
           <div key={page} className="flex items-center">
             {showEllipsis && (
@@ -85,18 +85,18 @@ export default function Pagination({
               onClick={() => onPageChange(page)}
               className={`inline-flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition-colors ${
                 currentPage === page
-                  ? "bg-primary text-primary-foreground"
-                  : "border border-input bg-background hover:bg-muted"
+                  ? 'bg-primary text-primary-foreground'
+                  : 'border border-input bg-background hover:bg-muted'
               }`}
               aria-label={`Page ${page}`}
-              aria-current={currentPage === page ? "page" : undefined}
+              aria-current={currentPage === page ? 'page' : undefined}
             >
               {page}
             </button>
           </div>
         );
       })}
-      
+
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}

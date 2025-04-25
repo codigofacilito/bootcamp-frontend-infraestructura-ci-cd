@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { Search } from "lucide-react";
+import { useState, useEffect } from 'react';
+import { Search } from 'lucide-react';
 
 interface SearchBarProps {
   initialQuery: string;
@@ -11,11 +11,11 @@ interface SearchBarProps {
 export default function SearchBar({ initialQuery, onSearch }: SearchBarProps) {
   const [query, setQuery] = useState(initialQuery);
   const [isFocused, setIsFocused] = useState(false);
-  
+
   useEffect(() => {
     setQuery(initialQuery);
   }, [initialQuery]);
-  
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch(query);
@@ -31,8 +31,8 @@ export default function SearchBar({ initialQuery, onSearch }: SearchBarProps) {
         <div
           className={`relative rounded-lg border transition-all duration-200 ${
             isFocused
-              ? "border-primary shadow-sm ring-1 ring-primary"
-              : "border-input"
+              ? 'border-primary shadow-sm ring-1 ring-primary'
+              : 'border-input'
           }`}
         >
           <div className="flex h-14 items-center">
