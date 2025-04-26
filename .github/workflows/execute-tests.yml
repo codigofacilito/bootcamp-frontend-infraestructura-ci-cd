@@ -4,6 +4,10 @@ name: Ejecutando Tests # El nombre no importa, es una string
 on: 
   push: 
     branches: ["develop"] # Es el nombre de las ramas
+ # Ejecute cada cierta cantidad de tiempo
+ # schedule:
+    #- cron: '' # Lunes a las 8am
+  workflow_dispatch: # Permitiendo que esta se dispare desde Github Actions
 
 jobs: # se pueden definir n cantidad de Jobs
 
@@ -25,6 +29,7 @@ jobs: # se pueden definir n cantidad de Jobs
         run: npm run test # Este comando debe de existir en mi package.json
   
   lint: 
+    needs: [test]
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
