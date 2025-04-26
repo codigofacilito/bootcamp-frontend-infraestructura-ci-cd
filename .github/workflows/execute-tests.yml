@@ -11,22 +11,22 @@ on:
 
 jobs: # se pueden definir n cantidad de Jobs
 
-  test: # El nombre no importa
-    runs-on: ubuntu-latest # El runner o ambiente en el que se va a ejecutar
-    steps:
-      - uses: actions/checkout@v4
+  #test: # El nombre no importa
+    #runs-on: ubuntu-latest # El runner o ambiente en el que se va a ejecutar
+    #steps:
+      #- uses: actions/checkout@v4
       
-      - name: Setup NodeJs v20 # El nombre es una string
-        uses: actions/setup-node@v4
-        with: 
-          node-version: 20
-          cache: 'npm'
+      #- name: Setup NodeJs v20 # El nombre es una string
+       # uses: actions/setup-node@v4
+    #        with: 
+    #      node-version: 20
+    #      cache: 'npm'
       
-      - name: Instalar Dependencias
-        run: npm ci # Este comando no es necesario que exista en mi package.json, es uso exclusivo de CI
+    #  - name: Instalar Dependencias
+    #    run: npm ci # Este comando no es necesario que exista en mi package.json, es uso exclusivo de CI
 
-      - name: Ejecutar Pruebas Unitarias
-        run: npm run test # Este comando debe de existir en mi package.json
+    #  - name: Ejecutar Pruebas Unitarias
+    #    run: npm run test # Este comando debe de existir en mi package.json
   
   lint: 
     # needs: [test] Se ejecuta una despues de la otra con este comando
@@ -44,4 +44,27 @@ jobs: # se pueden definir n cantidad de Jobs
       - name: Ejecutar Linting
         run: npm run lint # Este comando debe de existir en mi package.json
   
-  
+  test:
+    name: Run Tests
+    needs: [lint]
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [18, 20]
+        exclude:
+          - os: macos-latest
+            node-version: 18
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
