@@ -24,7 +24,19 @@ jobs: # se pueden definir n cantidad de Jobs
       - name: Ejecutar Pruebas Unitarias
         run: npm run test # Este comando debe de existir en mi package.json
   
-  
+  lint: 
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup NodeJs v20 # El nombre es una string
+        uses: actions/setup-node@v4
+        with: 
+          node-version: 20
+          cache: 'npm'
+      - name: Instalar Dependencias
+        run: npm ci # Este comando no es necesario que exista en mi package.json, es uso exclusivo de CI
 
+      - name: Ejecutar Linting
+        run: npm run lint # Este comando debe de existir en mi package.json
   
   
